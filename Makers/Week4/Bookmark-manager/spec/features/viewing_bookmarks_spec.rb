@@ -1,5 +1,9 @@
+
+
 feature 'Viewing bookmarks' do
   scenario 'visiting the index page' do
+    wipe_table
+    add_test_data
     visit('/bookmarks')
 
     expect(page).to have_content "http://www.makersacademy.com"
