@@ -9,11 +9,7 @@ end
 
 
 def add_test_data
-
-  con = PG.connect :dbname => 'bookmark_manager_test'
-  rs = con.exec "INSERT INTO bookmarks (url) VALUES ('http://www.google.com');"
-  rs = con.exec "INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');" 
-  rs = con.exec "INSERT INTO bookmarks (url) VALUES ('http://www.destroyallsoftware.com');"
-
-
+  Bookmarks.add_bookmark(url: 'http://www.google.com')
+  Bookmarks.add_bookmark(url: 'http://www.makersacademy.com')
+  Bookmarks.add_bookmark(url: 'http://www.destroyallsoftware.com')
 end

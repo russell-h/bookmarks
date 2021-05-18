@@ -5,6 +5,10 @@ Showing a list of bookmarks:
   To see a list of my favourite websites,
   Show me a list of bookmarks
 
+As a user,
+So I can save my new favourite websites,
+I'd like to be able to save new bookmarks to the list
+
 
 user
 bookmark list
