@@ -5,19 +5,34 @@ describe Bookmarks do
   describe '.all' do
     it 'returns alll bookmarks' do
       wipe_table
-      add_test_data
-      bookmarks = Bookmarks.all
+      
 
-      expect(bookmarks).to include ("http://www.makersacademy.com")
-      expect(bookmarks).to include("http://www.destroyallsoftware.com")
-      expect(bookmarks).to include("http://www.google.com")
+    bookmark = Bookmarks.add_bookmark(url: "http://www.makersacademy.com", title: "Makers Academy")
+    Bookmarks.add_bookmark(url: "http://www.destroyallsoftware.com", title: "Destroy All Software")
+    Bookmarks.add_bookmark(url: "http://www.google.com", title: "Google")
+
+
+    bookmarks = Bookmarks.all
+
+      expect(bookmarks.length).to eq 3
+      expect(bookmarks.first).to be_a Bookmarks
+      expect(bookmarks.first.id).to eq bookmark.id
+      expect(bookmarks.first.title).to eq 'Makers Academy'
+      expect(bookmarks.first.url).to eq 'http://www.makersacademy.com'
+
     end
   end
+
+
   describe '.add_bookmark' do
     it 'creates a new bookmark' do
-      Bookmarks.add_bookmark(url: 'http://www.testbookmark.com')
+      bookmark = Bookmarks.add_bookmark(url: 'http://www.testbookmark.com', title: 'Test Bookmark')
+      persisted_data = PG.connect(dbname: 'bookmark_manager_test').query("SELECT * FROM bookmarks WHERE id = #{bookmark.id}")
   
-      expect(Bookmarks.all).to include 'http://www.testbookmark.com'
+      expect(bookmark).to be_a Bookmarks
+    expect(bookmark.id).to eq persisted_data.first['id']
+    expect(bookmark.title).to eq 'Test Bookmark'
+    expect(bookmark.url).to eq 'http://www.testbookmark.com'
     end
   end
 end
