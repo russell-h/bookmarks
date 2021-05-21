@@ -1,9 +1,10 @@
 require 'bookmarks'
+require 'byebug'
 
 
 describe Bookmarks do
   describe '.all' do
-    it 'returns alll bookmarks' do
+    it 'returns all bookmarks' do
       wipe_table
       
 
@@ -33,6 +34,18 @@ describe Bookmarks do
     expect(bookmark.id).to eq persisted_data.first['id']
     expect(bookmark.title).to eq 'Test Bookmark'
     expect(bookmark.url).to eq 'http://www.testbookmark.com'
+    end
+  end
+
+  describe '.delete' do
+   
+    it 'deletes the given bookmark' do
+      wipe_table
+      bookmark = Bookmarks.add_bookmark(title: 'Makers Academy', url: 'http://www.makersacademy.com')
+
+      Bookmarks.delete(id: bookmark.id)
+
+      expect(Bookmarks.all.length).to eq 0
     end
   end
 end

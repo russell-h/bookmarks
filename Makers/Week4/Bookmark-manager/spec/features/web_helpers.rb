@@ -15,8 +15,8 @@ def wipe_table
 end
 
 
-def add_test_data
-  Bookmarks.add_bookmark(title: 'Google', url: 'http://www.google.com')
-  Bookmarks.add_bookmark(title: 'makers', url: 'http://www.makersacademy.com')
-  Bookmarks.add_bookmark(title: 'DAS', url: 'http://www.destroyallsoftware.com')
-end
+# def add_test_data
+#   Bookmarks.add_bookmark(title: 'Google', url: 'http://www.google.com')
+#   Bookmarks.add_bookmark(title: 'makers', url: 'http://www.makersacademy.com')
+#   Bookmarks.add_bookmark(title: 'DAS', url: 'http://www.destroyallsoftware.com')
+# end
